@@ -1,6 +1,7 @@
 import ollama
 from booking.models import CurrentBookings
 from django.db import transaction, IntegrityError
+import random
 
 
 def get_jarvis_response(message):
@@ -51,7 +52,73 @@ TOTAL_SEATS = 36
 
 def get_available_seat_count():
     booked_count = CurrentBookings.objects.count()
-    return TOTAL_SEATS - booked_count
+    return {
+        'message': f'There are {TOTAL_SEATS - booked_count} seats available out of {TOTAL_SEATS}.',
+    }
 
 
 # To book a random seat
+
+TOTAL_TABLES = 6
+TOTAL_SEATS_PER_TABLE = 6
+
+def book_random_seat(user):
+    try:
+        with transaction.atomic():
+            # Check if the user already has a booking
+            if CurrentBookings.objects.filter(user = user).exists():
+                return {'success': False, 
+                        'message': 'You have already booked a seat.'}
+
+            # Get the list of all booked seats
+            booked_seats = set( CurrentBookings.objects.values_list('table_no', 'seat_no') )
+
+            # Generate a list of all possible seats
+            available_seats = [
+                (table_no, seat_no)
+                for table_no in range(1, TOTAL_TABLES + 1)
+                for seat_no in range(1, TOTAL_SEATS_PER_TABLE + 1)
+                if (table_no, seat_no) not in booked_seats
+            ]
+
+            if not available_seats:
+                return {
+                    'success': False,
+                    'message': 'No seats are available for booking at the moment.'
+                }
+
+            # Select a random available seat
+            table_no, seat_no = random.choice(available_seats)
+
+            # Create a new booking for the user
+            CurrentBookings.objects.create(user = user, table_no = table_no, seat_no = seat_no)
+
+            return {
+                'success': True,
+                'message': 'Seat booked successfully.',
+                'table_no': table_no,
+                'seat_no': seat_no
+            }
+
+    except IntegrityError:
+        return {
+            'success': False,
+            'message': 'An error occured while booking the seat. Please try again.'
+        }
+
+
+def cancel_booking(user):
+    booking = CurrentBookings.objects.filter(user = user).first()
+
+    if booking is None:
+        return {
+            'success': False,
+            'message': 'You do not have any seat booked to cancel.'
+        }
+
+    booking.delete()
+
+    return {
+        'success': True,
+        'message': 'Your booking has been cancelled successfully.'
+    }

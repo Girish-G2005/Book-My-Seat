@@ -12,6 +12,7 @@ from django.db import transaction, IntegrityError
 
 # Fetching the booked seats from the CurrentBookings model to display the available seats on UI
 @api_view(['GET'])
+@permission_classes([IsAuthenticated])
 def get_booked_seats(request):
 
     bookedSeats = CurrentBookings.objects.all()
