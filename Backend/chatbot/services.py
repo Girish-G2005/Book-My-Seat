@@ -113,7 +113,7 @@ def cancel_booking(user):
     if booking is None:
         return {
             'success': False,
-            'message': 'You do not have any seat booked to cancel.'
+            'message': 'You do not have any reserved seat to cancel.'
         }
 
     booking.delete()

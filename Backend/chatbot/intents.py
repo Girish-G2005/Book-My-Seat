@@ -3,7 +3,6 @@ import ollama
 import json
 
 class Intent(Enum):
-    GREETING = "GREETING"
     CHECK_AVAILABILITY = "CHECK_AVAILABILITY"
     BOOK_SEAT = "BOOK_SEAT"
     CANCEL_BOOKING = "CANCEL_BOOKING"
