@@ -53,14 +53,14 @@ export const Navbar = () => {
         {/* Desktop buttons */}
         <div className="hidden md:flex items-center gap-2">
           <a
-            href="/login"
+            href="/login"    // update later-----------------------------------------------------------------------------
             className="text-sm font-semibold text-[#101828] hover:text-[#2563EB] px-3 py-2"
           >
             Sign In
           </a>
 
           <a
-            href="/signup"
+            href="/signup"    // update later ----------------------------------------------------------------------------
             className="text-sm font-semibold text-white bg-[#2563EB] hover:bg-[#1D4ED8] px-4 py-2 rounded-lg"
           >
             Get Started
@@ -73,7 +73,7 @@ export const Navbar = () => {
           aria-expanded={open}
           aria-label={open ? "Close menu" : "Open menu"}
           onClick={() => setOpen((prev) => !prev)}
-          className="md:hidden w-10 h-10 flex items-center justify-center rounded-lg hover:bg-slate-100"
+          className="md:hidden w-10 h-10 flex items-center justify-center rounded-lg hover:bg-slate-100 cursor-pointer"
         >
           {open ? (
             <X className="w-5 h-5" />
@@ -97,13 +97,13 @@ export const Navbar = () => {
             </a>
           ))}
 
-          <a href="/login" className="block px-3 py-2.5 text-center font-semibold">
+          <a href="/login" className="block px-3 py-2.5 text-center font-semibold hover:text-[#2563EB]">
             Sign In
           </a>
 
           <a
             href="/signup"
-            className="block px-3 py-2.5 text-center font-semibold text-white bg-[#2563EB] rounded-lg"
+            className="block px-3 py-2.5 text-center font-semibold text-white bg-[#2563EB] hover:bg-[#1D4ED8] rounded-lg"
           >
             Get Started
           </a>
