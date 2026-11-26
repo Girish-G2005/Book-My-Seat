@@ -4,7 +4,7 @@ import { Navbar } from "./components/navbar";
 function App() {
 
   return (
-    <div className="h-screen bg-blue-400 flex items-center justify-center">
+    <div>
       <Navbar />
     </div>
   )

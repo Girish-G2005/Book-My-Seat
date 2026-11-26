@@ -27,88 +27,88 @@ export const Navbar = () => {
         scrolled ? "shadow-md" : ""
       }`}
     >
-      <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+        <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
 
-        {/* Logo */}
-        <a href="/" className="flex items-center gap-2.5">
-          <SeatLogo />
-          <span className="font-extrabold text-lg text-[#101828] tracking-tight">
-            BookMySeat
-          </span>
-        </a>
-
-        {/* Desktop navigation links */}
-        <div className="hidden md:flex items-center gap-8">
-          {LINKS.map((link) => (
-            <a
-              key={link.href}
-              href={link.href}
-              className="text-sm font-bold text-slate-600 hover:text-[#101828] transition-colors"
-            >
-              {link.label}
+            {/* Logo */}
+            <a href="/" className="flex items-center gap-2.5">
+                <SeatLogo />
+                <span className="font-extrabold text-lg text-[#101828] tracking-tight">
+                  BookMySeat
+                </span>
             </a>
-          ))}
-        </div>
 
-        {/* Desktop buttons */}
-        <div className="hidden md:flex items-center gap-2">
-          <a
-            href="/login"    // update later-----------------------------------------------------------------------------
-            className="text-sm font-semibold text-[#101828] hover:text-[#2563EB] px-3 py-2"
-          >
-            Sign In
-          </a>
+            {/* Desktop navigation links */}
+            <div className="hidden md:flex items-center gap-8">
+              {LINKS.map((link) => (
+                <a
+                  key={link.href}
+                  href={link.href}
+                  className="text-sm font-bold text-slate-600 hover:text-[#101828] transition-colors"
+                >
+                  {link.label}
+                </a>
+              ))}
+            </div>
 
-          <a
-            href="/signup"    // update later ----------------------------------------------------------------------------
-            className="text-sm font-semibold text-white bg-[#2563EB] hover:bg-[#1D4ED8] px-4 py-2 rounded-lg"
-          >
-            Get Started
-          </a>
-        </div>
+            {/* Desktop buttons */}
+            <div className="hidden md:flex items-center gap-2">
+                <a
+                  href="/login"    // update later-----------------------------------------------------------------------------
+                  className="text-sm font-semibold text-[#101828] hover:text-[#2563EB] px-3 py-2"
+                >
+                  Sign In
+                </a>
 
-        {/* Mobile menu button */}
-        <button
-          type="button"
-          aria-expanded={open}
-          aria-label={open ? "Close menu" : "Open menu"}
-          onClick={() => setOpen((prev) => !prev)}
-          className="md:hidden w-10 h-10 flex items-center justify-center rounded-lg hover:bg-slate-100 cursor-pointer"
-        >
-          {open ? (
-            <X className="w-5 h-5" />
-          ) : (
-            <Menu className="w-5 h-5" />
-          )}
-        </button>
-      </nav>
+                <a
+                  href="/signup"    // update later ----------------------------------------------------------------------------
+                  className="text-sm font-semibold text-white bg-[#2563EB] hover:bg-[#1D4ED8] px-4 py-2 rounded-lg"
+                >
+                  Get Started
+                </a>
+            </div>
 
-      {/* Mobile menu */}
-      {open && (
-        <div className="md:hidden border-t border-slate-200 bg-white px-4 py-4 space-y-2">
-          {LINKS.map((link) => (
-            <a
-              key={link.href}
-              href={link.href}
-              onClick={() => setOpen(false)}
-              className="block px-3 py-2.5 rounded-lg text-sm font-medium text-slate-700 hover:bg-slate-100"
+            {/* Mobile menu button */}
+            <button
+              type="button"
+              aria-expanded={open}
+              aria-label={open ? "Close menu" : "Open menu"}
+              onClick={() => setOpen((prev) => !prev)}
+              className="md:hidden w-10 h-10 flex items-center justify-center rounded-lg hover:bg-slate-100 cursor-pointer"
             >
-              {link.label}
-            </a>
-          ))}
+                {open ? (
+                  <X className="w-5 h-5" />
+                ) : (
+                  <Menu className="w-5 h-5" />
+                )}
+            </button>
+        </nav>
 
-          <a href="/login" className="block px-3 py-2.5 text-center font-semibold hover:text-[#2563EB]">
-            Sign In
-          </a>
+        {/* Mobile menu */}
+        {open && (
+            <div className="md:hidden border-t border-slate-200 bg-white px-4 py-4 space-y-2">
+                {LINKS.map((link) => (
+                  <a
+                    key={link.href}
+                    href={link.href}
+                    onClick={() => setOpen(false)}
+                    className="block px-3 py-2.5 rounded-lg text-sm font-medium text-slate-700 hover:bg-slate-100"
+                  >
+                    {link.label}
+                  </a>
+                ))}
 
-          <a
-            href="/signup"
-            className="block px-3 py-2.5 text-center font-semibold text-white bg-[#2563EB] hover:bg-[#1D4ED8] rounded-lg"
-          >
-            Get Started
-          </a>
-        </div>
-      )}
+                <a href="/login" className="block px-3 py-2.5 text-center font-semibold hover:text-[#2563EB]">
+                  Sign In
+                </a>
+
+                <a
+                  href="/signup"
+                  className="block px-3 py-2.5 text-center font-semibold text-white bg-[#2563EB] hover:bg-[#1D4ED8] rounded-lg"
+                >
+                  Get Started
+                </a>
+            </div>
+        )}
     </header>
   );
 };
